@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>:root{color-scheme:light}body{margin:0}</style>
+<title>محمدعلی فروغی</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;700&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a long single-column dossier with a sticky chapter bar; each chapter is labelled by the real years it covers, and a lapis ink / paper palette carries one red seal (the "mohr" of the opening scene). */
+:root {
+  --paper: #EDEFF2;
+  --surface: #F8F9FB;
+  --ink: #15202B;
+  --muted: #4A5866;
+  --rule: #C7CFD8;
+  --lapis: #1E4D8F;
+  --lapis-soft: #DDE7F5;
+  --seal: #B3261E;
+  --display: "Markazi Text", "Vazirmatn", "Noto Naskh Arabic", serif;
+  --text: "Vazirmatn", Tahoma, "Noto Sans Arabic", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E151D;
+    --surface: #151E29;
+    --ink: #E7ECF2;
+    --muted: #9CAAB8;
+    --rule: #2A3644;
+    --lapis: #8DB2EA;
+    --lapis-soft: #1B2A40;
+    --seal: #E5736A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E151D;
+  --surface: #151E29;
+  --ink: #E7ECF2;
+  --muted: #9CAAB8;
+  --rule: #2A3644;
+  --lapis: #8DB2EA;
+  --lapis-soft: #1B2A40;
+  --seal: #E5736A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.95;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--paper);
+  z-index: 30;
+}
+.page { max-width: 62rem; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--lapis); }
+:focus-visible { outline: 2px solid var(--lapis); outline-offset: 3px; }
+
+/* chapter bar */
+.bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding-block: .5rem;
+}
+.chips { display: flex; gap: .35rem; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips a {
+  flex: none;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.4;
+  padding: .3rem .7rem;
+  border: 1px solid transparent;
+}
+.chips a:hover { color: var(--ink); }
+.chips a.on { color: var(--lapis); border-color: var(--lapis); }
+.theme {
+  flex: none;
+  font: inherit;
+  font-size: .8125rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: .3rem .7rem;
+  cursor: pointer;
+}
+.theme:hover { border-color: var(--lapis); }
+.progress { position: absolute; inset: auto 0 -1px 0; height: 2px; background: var(--lapis); transform-origin: right; transform: scaleX(0); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; padding-block: 3.5rem 2.5rem; }
+.eyebrow { font-size: .875rem; letter-spacing: .04em; color: var(--lapis); font-weight: 500; }
+.hero h1 { font-size: clamp(3.4rem, 11vw, 7rem); line-height: 1.05; margin-block: .6rem .4rem; }
+.hero .alias { font-family: var(--display); font-size: clamp(1.4rem, 3.5vw, 2rem); color: var(--muted); }
+.lead { margin-top: 1.5rem; max-width: 36rem; font-size: 1.1875rem; }
+.seal { width: clamp(7rem, 22vw, 11rem); height: auto; transform: rotate(-5deg); }
+.seal rect.o { fill: none; stroke: var(--seal); stroke-width: 5; }
+.seal rect.i { fill: none; stroke: var(--seal); stroke-width: 1.5; }
+.seal text { fill: var(--seal); font-family: var(--display); font-weight: 700; font-size: 30px; }
+@media (max-width: 36rem) { .hero { grid-template-columns: 1fr; } .seal { order: -1; width: 6.5rem; } }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0 0 3rem; }
+.facts div { background: var(--surface); padding: .9rem 1rem; }
+.facts dt { font-size: .8125rem; color: var(--muted); line-height: 1.6; }
+.facts dd { margin: 0; font-family: var(--display); font-size: 1.75rem; font-weight: 700; line-height: 1.3; }
+
+.scene { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; background: var(--surface); border: 1px solid var(--rule); padding: 1.5rem; margin-bottom: 3rem; }
+.scene .tag { font-size: .8125rem; color: var(--seal); font-weight: 500; }
+.scene p { max-width: 44rem; }
+.qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.qs div { border-top: 2px solid var(--lapis); padding-top: .6rem; font-family: var(--display); font-size: 1.4rem; line-height: 1.5; font-weight: 500; }
+
+/* chapters */
+.sec { border-top: 1px solid var(--rule); padding-block: 3.5rem; scroll-margin-top: 4rem; }
+.sec-head { display: grid; gap: .3rem; margin-bottom: 1.75rem; }
+.sec-head .eyebrow { font-variant-numeric: tabular-nums; }
+.sec-head h2 { font-size: clamp(2rem, 6vw, 3rem); }
+.body { display: grid; gap: 1.1rem; max-width: 42rem; }
+.wide { max-width: none; }
+.note { font-size: .9375rem; color: var(--muted); }
+
+.pull { margin: 1rem 0; padding-block: 1.25rem; border-block: 1px solid var(--rule); max-width: 42rem; }
+.pull p { font-family: var(--display); font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1.5; font-weight: 500; }
+.pull cite { display: block; margin-top: .5rem; font-style: normal; font-size: .875rem; color: var(--muted); }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1.25rem; padding-block: .55rem; }
+.timeline time { font-family: var(--display); font-size: 1.35rem; font-weight: 700; color: var(--lapis); line-height: 1.7; font-variant-numeric: tabular-nums; }
+.timeline .t { position: relative; padding-inline-start: 1.25rem; border-inline-start: 1px solid var(--rule); }
+.timeline .t::before { content: ""; position: absolute; inset-inline-start: -5px; top: .75rem; width: 9px; height: 9px; background: var(--paper); border: 2px solid var(--lapis); border-radius: 50%; }
+.timeline .major .t::before { background: var(--seal); border-color: var(--seal); }
+@media (max-width: 30rem) { .timeline li { grid-template-columns: 1fr; gap: 0; } .timeline time { padding-inline-start: 1.25rem; } }
+
+.pairs { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; }
+.pair > div { background: var(--surface); padding: 1rem 1.1rem; }
+.pair h3 { font-size: 1.15rem; color: var(--muted); font-weight: 500; margin-bottom: .2rem; }
+.pair .ans h3 { color: var(--lapis); }
+.pair p { font-size: 1rem; line-height: 1.85; }
+@media (max-width: 40rem) { .pair { grid-template-columns: 1fr; } }
+
+.days { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.day { border-top: 2px solid var(--seal); padding-top: .6rem; }
+.day b { font-family: var(--display); font-size: 1.5rem; display: block; line-height: 1.5; }
+
+.works { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.work { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.2rem; }
+.work h3 { font-size: 1.35rem; color: var(--lapis); margin-bottom: .3rem; }
+.work ul { margin: 0; padding-inline-start: 1.1rem; font-size: 1rem; line-height: 1.85; }
+
+.critics { display: grid; gap: 0; }
+.critic { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.25rem; padding-block: 1.1rem; border-top: 1px solid var(--rule); }
+.critic:last-child { border-bottom: 1px solid var(--rule); }
+.critic h3 { font-size: 1.3rem; color: var(--lapis); }
+@media (max-width: 40rem) { .critic { grid-template-columns: 1fr; gap: .2rem; } }
+
+.defense { background: var(--lapis-soft); padding: 1.25rem 1.4rem; max-width: 42rem; }
+.defense h3 { font-size: 1.35rem; margin-bottom: .4rem; }
+.defense ul { margin: 0; padding-inline-start: 1.1rem; }
+
+.questions { margin: 0; padding: 0; list-style: none; display: grid; gap: .8rem; }
+.questions li { font-family: var(--display); font-size: 1.5rem; line-height: 1.6; font-weight: 500; padding-inline-start: 1rem; border-inline-start: 2px solid var(--seal); }
+
+footer { border-top: 1px solid var(--rule); padding-block: 2.5rem 4rem; color: var(--muted); font-size: .9375rem; display: grid; gap: .6rem; }
+footer ul { margin: 0; padding-inline-start: 1.1rem; }
+.hint { font-size: .8125rem; }
+@media (max-width: 36rem) { .hint { display: none; } }
+</style>
+
+</head>
+<body>
+<div class="page" dir="rtl" lang="fa">
+
+<nav class="bar" aria-label="فهرست بخش‌ها">
+  <div class="chips" id="chips"></div>
+  <button class="theme" id="theme" type="button">تیره / روشن</button>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">پرونده‌ی تاریخی · ۱۲۵۴ تا ۱۳۲۱ خورشیدی</div>
+    <h1>محمدعلی فروغی</h1>
+    <div class="alias">ذکاءالملک</div>
+    <p class="lead">سیاست‌مداری که هم آغاز سلطنت رضاشاه و هم پایان آن را مهر کرد، و ادیبی که حافظ و شاهنامه را تصحیح کرد و کتاب‌های درسی یک نسل از سیاست‌مداران را نوشت.</p>
+  </div>
+  <svg class="seal" viewBox="0 0 120 120" role="img" aria-label="مهر فروغی">
+    <rect class="o" x="6" y="6" width="108" height="108" rx="8"></rect>
+    <rect class="i" x="15" y="15" width="90" height="90" rx="4"></rect>
+    <text x="60" y="54" text-anchor="middle">محمدعلی</text>
+    <text x="60" y="90" text-anchor="middle">فروغی</text>
+  </svg>
+</header>
+
+<main>
+  <dl class="facts">
+    <div><dt>نخست‌وزیری</dt><dd>سه دوره</dd></div>
+    <div><dt>نمایندگی مجلس</dt><dd>سه دوره</dd></div>
+    <div><dt>خانه‌نشینی اجباری</dt><dd>حدود شش سال</dd></div>
+    <div><dt>عمر</dt><dd>۶۷ سال</dd></div>
+  </dl>
+
+  <section class="scene" aria-label="صحنه‌ی آغازین">
+    <div class="tag">صحنه‌ی آغازین ویدیو</div>
+    <p>رضاشاه می‌پرسد پس از استعفا کجا زندگی کند و هزینه‌ی شاهزادگان را چه کسی می‌پردازد. فروغی پیشنهاد می‌کند کشوری آرام و خوش‌آب‌وهوا انتخاب شود و رضاشاه از آمریکای جنوبی، مثلاً شیلی، می‌گوید. گفت‌وگو با این جمله تمام می‌شود که ولیعهد شاه خواهد شد. به روایت ویدیو، فروغی با همین گفت‌وگو مهر خود را بر پایان پهلوی اول زد، همان‌طور که پیش‌تر بر آغازش زده بود.</p>
+    <div class="qs">
+      <div>او که بود؟</div>
+      <div>چرا رضاشاه روزی بر او خشم گرفت؟</div>
+      <div>چرا همان شاه او را آخرین منجی خود دید؟</div>
+    </div>
+  </section>
+
+  <section class="sec" id="timeline" data-label="خط زمانی">
+    <div class="sec-head"><div class="eyebrow">۱۲۵۴ تا ۱۳۲۱</div><h2>خط زمانی زندگی</h2></div>
+    <ol class="timeline">
+      <li><time>۱۲۵۴</time><div class="t">تولد در دوره‌ی ناصرالدین‌شاه، در خانه‌ی محمدحسین‌خان ذکاءالملک.</div></li>
+      <li><time>۱۲۷۵</time><div class="t">در ۲۱ سالگی با پدر نشریه‌ی «تربیت» را منتشر می‌کند.</div></li>
+      <li><time>۱۲۷۸</time><div class="t">ترجمه برای مدرسه‌ی عالی علوم سیاسی و تدریس تاریخ در آن.</div></li>
+      <li class="major"><time>۱۲۸۵</time><div class="t">فرمان مشروطه. فروغی ۳۱ ساله رئیس دبیرخانه‌ی مجلس اول می‌شود.</div></li>
+      <li><time>۱۲۸۶</time><div class="t">مرگ پدر؛ لقب ذکاءالملک و ریاست مدرسه‌ی علوم سیاسی به او می‌رسد.</div></li>
+      <li><time>۱۲۸۸</time><div class="t">نماینده‌ی تهران در مجلس دوم و رئیس مجلس در ۳۵ سالگی.</div></li>
+      <li><time>۱۲۹۰</time><div class="t">وزیر مالیه و سپس وزیر عدلیه در کابینه‌ی صمصام‌السلطنه.</div></li>
+      <li><time>۱۲۹۹</time><div class="t">کودتای سوم اسفند؛ فروغی حامی رضاخان می‌شود.</div></li>
+      <li><time>۱۳۰۱</time><div class="t">وزیر امور خارجه.</div></li>
+      <li class="major"><time>۱۳۰۴</time><div class="t">آذرماه، نخستین نخست‌وزیر سلسله‌ی پهلوی.</div></li>
+      <li><time>۱۳۰۵</time><div class="t">چهارم اردیبهشت، تاج‌گذاری رضاشاه و نطق فروغی.</div></li>
+      <li><time>۱۳۰۶</time><div class="t">سفر به اروپا؛ سپس سفیر ایران در ترکیه و رئیس هیئت ایران در جامعه‌ی ملل.</div></li>
+      <li><time>۱۳۰۹</time><div class="t">بازگشت به ایران؛ وزیر اقتصاد ملی و وزیر خارجه.</div></li>
+      <li><time>۱۳۱۲</time><div class="t">دومین نخست‌وزیری.</div></li>
+      <li class="major"><time>۱۳۱۴</time><div class="t">۲۸ مرداد، بخشنامه‌ی کلاه و مجالس ختم. پس از ماجرای مسجد گوهرشاد، عزل و حصر خانگی.</div></li>
+      <li class="major"><time>۱۳۲۰</time><div class="t">شهریور، حمله‌ی متفقین. سومین نخست‌وزیری، استعفای رضاشاه و آغاز سلطنت محمدرضاشاه.</div></li>
+      <li><time>۱۳۲۱</time><div class="t">۵ آذر، سکته‌ی قلبی و مرگ در ۶۷ سالگی.</div></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="roots" data-label="ریشه‌ها">
+    <div class="sec-head"><div class="eyebrow">۱۲۵۴ تا ۱۲۸۵</div><h2>ریشه‌ها و آموزش</h2></div>
+    <div class="body">
+      <p>پدر فروغی، محمدحسین‌خان ذکاءالملک، هم محقق بود و هم شاعر و مترجم. در زمان ناصرالدین‌شاه و مظفرالدین‌شاه ریاست بخش ترجمه و تألیف وزارت انطباعات را داشت؛ وزارتخانه‌ای که ویدیو آن را معادل وزارت فرهنگ و ارشاد امروز می‌داند. گفته می‌شود بیشتر آثاری که به نام اعتمادالسلطنه، وزیر وقت، چاپ شد کار همین پدر بود.</p>
+      <p>محمدعلی از کودکی عربی و فرانسه و انگلیسی آموخت و به دارالفنون رفت. طب می‌خواند، اما جذبش نکرد و سراغ علوم انسانی رفت: فلسفه و حکمت، علوم سیاسی، تاریخ و حقوق. در همه‌ی این‌ها تخصص پیدا کرد.</p>
+      <p>در ۱۲۷۵، ده سال پیش از مشروطه، پدر نشریه‌ی «تربیت» را راه انداخت. فروغی ۲۱ ساله در آن ترجمه می‌کرد، درباره‌ی قانون و آموزش و تجدد می‌نوشت و عملاً سردبیرش بود. نشریه ده سال منظم منتشر شد.</p>
+      <p>پدر در مدرسه‌ی عالی علوم سیاسی استاد و بعد رئیس شد و پسر معاون او بود. ویدیو می‌گوید از ۱۲۷۸ به بعد، از هر چهار کتابی که در آن مدرسه ترجمه می‌شد دو کتاب کار پدر و پسر بود.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="constitution" data-label="مشروطه و مجلس">
+    <div class="sec-head"><div class="eyebrow">۱۲۸۵ تا ۱۲۹۹</div><h2>مشروطه و مجلس</h2></div>
+    <div class="body">
+      <p>ترجمه‌های فروغی‌ها از خوراک‌های فکری مشروطه‌خواهان بود. مرداد ۱۲۸۵ مظفرالدین‌شاه فرمان مشروطه را امضا کرد و مجلس شورای ملی تشکیل شد. فروغی ۳۱ ساله بهتر از هر کسی با نظام پارلمانی اروپا آشنا بود و ریاست دبیرخانه‌ی مجلس به او رسید. تأسیس کتابخانه‌ی مجلس از نخستین کارهای او بود.</p>
+      <p>او از بنیان‌گذاران نخستین لژ رسمی فراماسونری ایران، «بیداری ایرانیان»، هم بود.</p>
+      <p>پدر در ۱۲۸۶ درگذشت. فروغی لقب و جایگاه او را گرفت، رئیس مدرسه‌ی علوم سیاسی شد و از دبیرخانه‌ی مجلس کنار رفت. در ۱۲۸۸ نماینده‌ی تهران در مجلس دوم شد و پس از دو رئیس پیشین، در ۳۵ سالگی رئیس مجلس. سپس وزیر مالیه و عدلیه شد. در مجلس سوم دوباره نماینده بود، اما با انتخاب شدن به ریاست دیوان عالی کشور مجلس را ترک کرد.</p>
+      <p>در کنفرانس صلح پس از جنگ جهانی اول، فروغی و هیئت ایران برای گرفتن امتیاز بابت خسارت‌های جنگ رفتند. آمریکا ضمناً موافق حضور ایران بود، اما انگلیس مخالفت کرد و آنان را راه نداد.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="rezakhan" data-label="همراه رضاخان">
+    <div class="sec-head"><div class="eyebrow">۱۲۹۹ تا ۱۳۰۶</div><h2>همراه رضاخان</h2></div>
+    <div class="body">
+      <p>فروغی مانند بیشتر مشروطه‌خواهان از کودتای سوم اسفند ۱۲۹۹ حمایت کرد. شم سیاسی قوی داشت و می‌دانست در میان کودتاچیان آینده‌ی روشن‌تر با رضاخان است. رضاخان هم او را کنار خود می‌خواست. فروغی در ۱۳۰۱ وزیر خارجه شد و چند بار وزیر جنگ و مالیه. مجلس پنجم سلسله‌ی قاجار را منحل کرد و رضاخان رضاشاه شد.</p>
+      <p>آذر ۱۳۰۴ رضاشاه فروغی را رسماً نخست‌وزیر کرد و او نخستین نخست‌وزیر پهلوی شد.</p>
+    </div>
+    <blockquote class="pull">
+      <p>روز تاج‌گذاری، فروغی و تیمورتاش در یک کالسکه نشسته بودند.</p>
+      <cite>چهارم اردیبهشت ۱۳۰۵، ورود هیئت سلطنتی به کاخ گلستان</cite>
+    </blockquote>
+    <div class="body">
+      <p>هر دو پیش از مراسم نشان درجه‌ی اول تاج را، بزرگ‌ترین نشان افتخار کشور، از رضاشاه گرفتند. نطق تاج‌گذاری را فروغی خواند. او در آن نطق گفت این جشن تنها برای نشستن یک پادشاه بر تخت نیست، بلکه به ملت ستم‌دیده بشارت می‌دهد که روزگار حرمان و محنت سپری شده است.</p>
+      <p>فروغی تا دو ماه پس از تاج‌گذاری نخست‌وزیر ماند. در همین مدت القاب دیوانی را لغو کرد و قانون ثبت احوال را گذراند: ثبت ولادت، ازدواج، طلاق و مرگ و گرفتن شناسنامه. نام خانوادگی هنوز اجباری نبود. لقب ذکاءالملک هم به دستور خودش کنار رفت و او نام «فروغی» را برگزید، لقبی که ناصرالدین‌شاه به پدرش داده بود.</p>
+      <p>تیمورتاش، وزیر دربار، می‌خواست افسار قدرت را تنها به دست بگیرد و با فشار او فروغی استعفا داد؛ مستوفی‌الممالک جای او را گرفت. فروغی وزیر جنگ شد، اما این وزارتخانه را عملاً خود رضاشاه اداره می‌کرد. به نقل محسن فروغی، وقتی پدرش خواست کناره بگیرد و برای تحصیل پسران به اروپا برود، رضاشاه پذیرفت که بماند و گفت حقوق و مزایا از آن او و زحمتش از آن شاه است. فروغی رضایت نداشت، از وزارت جنگ هم کنار رفت و در ۱۳۰۶ با پسرانش راهی اروپا شد.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="diplomat" data-label="دیپلمات">
+    <div class="sec-head"><div class="eyebrow">۱۳۰۶ تا ۱۳۱۲</div><h2>دیپلمات و دولتمرد</h2></div>
+    <div class="body">
+      <p>چند ماه پس از اقامت در پاریس، فروغی سفیر ایران در ترکیه شد. روابط دو کشور را بهتر کرد و با آتاتورک رابطه‌ی نزدیکی یافت. او همچنین رئیس هیئت ایران در جامعه‌ی ملل شد؛ نهادی که پس از جنگ جهانی اول تشکیل شده بود و ویدیو آن را شبیه سازمان ملل امروز می‌داند. ریاست جامعه‌ی ملل هم به او سپرده شد، هرچند گفته می‌شود در این انتخاب ترکیه و آتاتورک نقش داشتند.</p>
+      <p>در ۱۳۰۹ وزارت اقتصاد ملی تازه تشکیل شده بود و فروغی را به ایران خواستند. او وزیر اقتصاد و هم‌زمان وزیر خارجه شد. وزارت اقتصاد به‌زودی منحل شد، اما او در همان دوره‌ی کوتاه سنگ‌بنای اتاق بازرگانی نوین ایران را گذاشت.</p>
+      <p>در ۱۳۱۲ برای بار دوم نخست‌وزیر شد. در این دوره کار تأسیس دانشگاه تهران به پایان رسید، جشن هزاره‌ی فردوسی با حضور مستشرقان در مشهد برگزار شد و فرهنگستان ایران بنیان گرفت. او سفر رضاشاه به ترکیه و دیدارش با آتاتورک را هم ترتیب داد؛ نخستین سفر خارجی رضاشاه که به روایت ویدیو تأثیر زیادی بر او گذاشت.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="fall" data-label="سقوط ۱۳۱۴">
+    <div class="sec-head"><div class="eyebrow">۱۳۱۲ تا ۱۳۱۴</div><h2>سقوط</h2></div>
+    <div class="body">
+      <p>رضاشاه یکی‌یکی چهره‌های قدرتمند اطراف خود را کنار می‌زد. تیمورتاش را از وزارت دربار برداشت و زندانی کرد، و حدود یک ماه پس از بازگشت فروغی به نخست‌وزیری خبر کشته شدن او در زندان قصر رسید. سردار اسعد بختیاری هم در همین دوره کشته شد. نوبت فروغی هم رسید.</p>
+      <p>۲۸ مرداد ۱۳۱۴ دولت فروغی بخشنامه‌ای صادر کرد: مردان کلاه پهلوی را بردارند و کلاه شاپو بگذارند، مجالس ختم فقط در مساجد مورد تأیید شهرداری برگزار شود و چای و قهوه و سیگار و قلیان در آن‌ها ممنوع باشد. شایعه‌ی کشف حجاب هم در همان زمان مطرح بود. در مسجد گوهرشاد مشهد اعتراض شد و سرکوب شد.</p>
+      <p>رضاشاه محمدولی اسدی، نایب‌التولیه‌ی حرم امام رضا، را مقصر دانست. دختر فروغی عروس اسدی بود و نخست‌وزیر پیش شاه از او شفاعت کرد. شفاعت پذیرفته نشد و فروغی هم برکنار و تحت نظر نظمیه در خانه‌اش حصر شد. ۲۹ آذر ۱۳۱۴ اسدی در مشهد تیرباران شد.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="house" data-label="شش سال حصر">
+    <div class="sec-head"><div class="eyebrow">۱۳۱۴ تا ۱۳۲۰</div><h2>حصر و کار علمی</h2></div>
+    <div class="body">
+      <p>خانه‌نشینی برای فروغی دوره‌ای پربار بود. در همین سال‌ها سه جلد «سیر حکمت در اروپا» و «شرح اشارات» ابوعلی سینا را نوشت؛ آثاری در فلسفه‌ی غرب و فلسفه‌ی اسلامی که سال‌ها مرجع ماندند. حصر کم‌کم سست شد و او می‌توانست در مجامع علمی سخنرانی کند.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="shahrivar" data-label="شهریور ۱۳۲۰">
+    <div class="sec-head"><div class="eyebrow">شهریور ۱۳۲۰</div><h2>سخت‌ترین مأموریت</h2></div>
+    <div class="body">
+      <p>تابستان ۱۳۲۰ آلمان به شوروی حمله کرد و انگلیس و آمریکا برای کمک به شوروی مسیری را برگزیدند که از ایران می‌گذشت. رضاشاه به آلمان نزدیک‌تر بود و متفقین تصمیم گرفتند ایران را اشغال کنند.</p>
+    </div>
+    <div class="days" style="margin-block: 1.5rem;">
+      <div class="day"><b>۳ شهریور</b><p>متفقین به ایران حمله می‌کنند و در خاک آن پیش می‌روند.</p></div>
+      <div class="day"><b>۵ شهریور</b><p>رضاشاه فروغی را به کاخ می‌خواند و جلوی هیئت وزیران نخست‌وزیری را به او پیشنهاد می‌کند. فروغی می‌پذیرد.</p></div>
+    </div>
+    <div class="body">
+      <p>وقتی برادرش پرسید پس از شش سال خانه‌نشینی چرا دوباره همکاری می‌کند، گفت امروز وطن به وجود او نیاز دارد و او نمی‌تواند از مسئولیت شانه خالی کند، حتی به قیمت جانش. ویدیو روایت می‌کند که رضاشاه نخست مجید آهی و چند گزینه‌ی دیگر را در نظر داشت و ناچار به فروغی رسید.</p>
+      <p>فروغی از آغاز جنگ معتقد بود آلمان در نهایت شکست می‌خورد و متفقین سراغ ایران می‌آیند. پس مقاومت نکرد و ترک مخاصمه را اعلام کرد. انگلیس و شوروی بمباران را متوقف کردند اما تا دروازه‌های تهران پیش آمدند. آنان به رضاشاه اعتماد نداشتند و تغییر حکومت می‌خواستند.</p>
+    </div>
+    <div class="pairs" style="margin-block: 1.75rem; max-width: 52rem;">
+      <div class="pair">
+        <div><h3>خواسته‌ی انگلیس</h3><p>تغییر نظام از سلطنت به جمهوری.</p></div>
+        <div class="ans"><h3>پاسخ فروغی</h3><p>مقاومت. در گفت‌وگو با بولارد، سفیر انگلیس، آنان را به ادامه‌ی سلطنت راضی کرد.</p></div>
+      </div>
+      <div class="pair">
+        <div><h3>خواسته‌ی انگلیس</h3><p>برکناری رضاشاه و نشاندن یکی از نوادگان قاجار، که با چند نفر از آنان، از جمله مقیمی در انگلستان، مذاکره شد.</p></div>
+        <div class="ans"><h3>پاسخ فروغی</h3><p>مقاومت، با تأکید بر اینکه این تغییر خلاف قانون اساسی است. نتیجه: ولیعهد به‌جای پدر شاه شود.</p></div>
+      </div>
+    </div>
+    <div class="body">
+      <p>مأموریت بعدی راضی کردن رضاشاه به استعفا بود. فروغی استعفانامه را نوشت، رضاشاه امضا کرد و فروغی همان کسی بود که آن را در مجلس خواند، همان‌گونه که نطق تاج‌گذاری او را هم خوانده بود. او نطق قرائت استعفا را به نطق آغاز سلطنت محمدرضاشاه بدل کرد و گفت شاه جدید پادشاهی قانونی است و تصمیم قطعی دارد قانون اساسی را رعایت کند.</p>
+      <p>فروغی با انگلیس، آمریکا و شوروی قراردادی بست که پس از پایان جنگ ایران را تخلیه کنند. تخلیه‌ی ایران بر پایه‌ی همین توافق انجام شد.</p>
+      <p class="note">نقدی هم هست: برخی می‌گویند اگر فروغی جمهوری مورد حمایت انگلیس را می‌پذیرفت، تاریخ ایران بسیار متفاوت می‌شد.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="end" data-label="پایان">
+    <div class="sec-head"><div class="eyebrow">۱۳۲۰ تا ۱۳۲۱</div><h2>سال آخر</h2></div>
+    <div class="body">
+      <p>فروغی شش ماه نخست‌وزیر ماند و کنار رفت. وزارت دربار به او سپرده شد، اما مدت کوتاهی در آن ماند. پیر و بیمار بود. سفارت ایران در آمریکا را پیشنهاد کردند و او با یک شرط پذیرفت: پسرش محمود به‌خاطر بیماری او را همراهی کند. هیئت وزیران مخالفت کرد و موضوع بی‌پاسخ ماند. ویدیو همین رنجش را علت بدتر شدن حال او و سکته‌ی قلبی می‌داند.</p>
+      <p>فروغی ۵ آذر ۱۳۲۱، در ۶۷ سالگی، درگذشت.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="works" data-label="دو چهره">
+    <div class="sec-head"><div class="eyebrow">سیاست و فلسفه</div><h2>چهره‌ی دوم: ادیب و مترجم</h2></div>
+    <div class="body" style="margin-bottom: 1.5rem;">
+      <p>ویدیو فروغی را دو چهره می‌داند: مرد سیاست و مرد فلسفه و حکمت. کتاب‌های او در مدرسه‌ی علوم سیاسی تدریس می‌شد و یک نسل سیاست‌مدار با آن‌ها تربیت شدند.</p>
+    </div>
+    <div class="works">
+      <div class="work"><h3>ترجمه و تألیف</h3><ul><li>اصول علم ثروت ملل</li><li>تاریخ ملل مشرق‌زمین</li><li>آداب مشروطیت دول</li><li>چند جلد تاریخ جهان</li></ul></div>
+      <div class="work"><h3>تصحیح متون</h3><ul><li>دیوان خیام</li><li>دیوان حافظ</li><li>دیوان سعدی</li><li>شاهنامه‌ی فردوسی</li></ul></div>
+      <div class="work"><h3>فلسفه</h3><ul><li>سیر حکمت در اروپا، سه جلد</li><li>شرح اشارات ابوعلی سینا</li></ul></div>
+      <div class="work"><h3>زبان و فرهنگستان</h3><ul><li>ریاست فرهنگستان</li><li>مقاله‌ی «پیام به فرهنگستان»</li><li>معادل‌سازی فارسی برای واژه‌های فرنگی</li></ul></div>
+    </div>
+    <div class="body" style="margin-top: 1.5rem;">
+      <p>«آداب مشروطیت دول» کمی پس از فرمان مشروطه چاپ شد و برای نخستین بار مفاهیم کلی حقوق اساسی را مطرح کرد. بسیاری از معادل‌های فارسی که امروز برای واژه‌های انگلیسی و فرانسه به کار می‌بریم ساخته‌ی او هستند. تصحیح‌هایش هنوز استفاده می‌شود. پس از کناره‌گیری از فرهنگستان، احساس کرد مسیر آن منحرف می‌شود و مقاله‌ی «پیام به فرهنگستان» را نوشت که به گفته‌ی ویدیو سندی راهنما برای اهالی فرهنگستان شد.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="critics" data-label="نقدها">
+    <div class="sec-head"><div class="eyebrow">نظر منتقدان</div><h2>نقدها و دفاع‌ها</h2></div>
+    <div class="critics wide">
+      <div class="critic"><h3>محمد مصدق</h3><p>در مجلس ششم، هنگامی که فروغی وزیر خارجه بود، او را متهم کرد نامه‌ای به سفارت شوروی نوشته و پذیرفته که دعاوی شهروندان شوروی به‌جای دادگاه‌های عدلیه در اداره‌ی محاکمات وزارت خارجه رسیدگی شود؛ یعنی بازگشت کاپیتولاسیون. مصدق گفت او از این امتیازدهی‌ها هرگز زیان ندیده و همیشه چند پست را هم‌زمان نگه می‌دارد.</p></div>
+      <div class="critic"><h3>سیاست انگلیس</h3><p>در دوره‌ی وزارت خارجه‌اش به او خرده گرفتند که پرداخت وجوهی را تأیید کرد که به استناد قرارداد ۱۹۱۹ بر ایران تحمیل شده بود. او به طرفداری از انگلیس در سیاست خارجه شهره بود.</p></div>
+      <div class="critic"><h3>حسین مکی</h3><p>در «تاریخ بیست‌ساله‌ی ایران» او را فراماسونی باهوش و تحصیل‌کرده توصیف می‌کند که همیشه طرفدار سیاست انگلستان و مورد اعتماد آنان بوده و به همین دلیل مقام‌های مهم گرفته است.</p></div>
+      <div class="critic"><h3>مورخان</h3><p>برخی او را در سرکوب‌های دوره‌ی رضاشاه مقصر می‌دانند. برخی دیگر نمی‌پذیرند که در ۱۳۲۰ جلوی جمهوری مورد حمایت انگلیس را گرفت.</p></div>
+      <div class="critic"><h3>حمله به تبار</h3><p>ملک‌الشعرای بهار در شعری که در آغاز سلطنت محمدرضاشاه سرود به شاه هشدار داد و فروغی را با اشاره به تبار یهودی‌اش تحقیر کرد. رادیوی آلمان نیز در جنگ همین را تبلیغ می‌کرد. ویدیو می‌گوید گفته می‌شود نیاکان او یهودی بودند، از عراق آمدند و مسلمان شدند. این‌ها حمله‌ی سیاسی بر پایه‌ی تبار بود، نه ارزیابی کارنامه.</p></div>
+    </div>
+    <div class="defense" style="margin-top: 1.75rem;">
+      <h3>آنچه به سود او گفته می‌شود</h3>
+      <ul>
+        <li>پیش‌بینی درست شکست آلمان و پرهیز از مقاومت بی‌حاصل.</li>
+        <li>حفظ سلطنت و استناد به قانون اساسی برای انتقال قدرت به ولیعهد.</li>
+        <li>قرارداد تخلیه‌ی ایران پس از جنگ.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="close" data-label="جمع‌بندی">
+    <div class="sec-head"><div class="eyebrow">گفته‌ی آتاتورک</div><h2>جمع‌بندی</h2></div>
+    <blockquote class="pull">
+      <p>کاش مملکت من یک فروغی داشت.</p>
+      <cite>مصطفی کمال آتاتورک، به نقل ویدیو، درباره‌ی فروغی در جامعه‌ی ملل</cite>
+    </blockquote>
+    <div class="body">
+      <p>فروغی در رویدادهای بزرگ تاریخ معاصر ایران حضور داشت: مشروطه، پایان قاجار، آغاز سلطنت رضاشاه و به قدرت رسیدن محمدرضاشاه. اولین نخست‌وزیر دوران پهلوی و آخرین نخست‌وزیر رضاشاه بود. وزیر خارجه، مالیه، عدلیه، اقتصاد، جنگ و دربار شد. دو جنگ جهانی را دید و کشور را در حساس‌ترین شرایط جنگ دوم اداره کرد. در مقابل، از او انتقادهای جدی هم شده است.</p>
+      <p>آتاتورک شباهت ایران و ترکیه را یادآور می‌شود و می‌گوید رهبر کشوری که نظامی ماندگار ساخت چنین آرزویی داشت. ویدیو یادآوری می‌کند که ایران خود روزگاری چنین سیاست‌مدارانی داشت و هر بار قدرت آنان را بی‌اثر کرد.</p>
+    </div>
+    <h3 style="margin-block: 2rem 1rem; font-size: 1.6rem;">پرسش‌هایی برای بحث</h3>
+    <ul class="questions">
+      <li>یک سیاست‌مدار دیگر باید برای مردمش چه کند؟</li>
+      <li>آیا همراهی با قدرت، برای حفظ کشور، موجه است؟</li>
+      <li>آیا آینده‌ی ایران دوباره چنین سیاست‌مدارانی، و بستری برای پرورش آنان، خواهد دید؟</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <strong>منابع</strong>
+  <ul>
+    <li>باقر عاقلی، شرح حال رجال سیاسی و نظامی معاصر ایران</li>
+    <li>خاطرات محسن فروغی، ذکاءالملک فروغی و شهریور ۱۳۲۰</li>
+    <li>هرمز همایون‌پور، سیاست‌نامه‌ی ذکاءالملک</li>
+  </ul>
+  <p>متن بر پایه‌ی قسمت مربوط به فروغی در پادکست «مورخ» به روایت احمد هاشمی تهیه شده است. تاریخ‌ها و روایت‌ها همان‌طور آمده‌اند که در آن ویدیو گفته شده، و عبارت «گفته می‌شود» نشانه‌ی روایت‌هایی است که ویدیو آن‌ها را قطعی نمی‌داند.</p>
+  <p class="hint">برای جابه‌جایی بین بخش‌ها از کلیدهای چپ و راست صفحه‌کلید استفاده کنید.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var secs = Array.prototype.slice.call(document.querySelectorAll("main section.sec"));
+  var chips = document.getElementById("chips");
+  secs.forEach(function (s) {
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    a.textContent = s.getAttribute("data-label");
+    a.setAttribute("data-for", s.id);
+    chips.appendChild(a);
+  });
+  var links = Array.prototype.slice.call(chips.querySelectorAll("a"));
+
+  function setOn(id) {
+    links.forEach(function (a) {
+      var on = a.getAttribute("data-for") === id;
+      a.classList.toggle("on", on);
+      if (on) {
+        var box = chips.getBoundingClientRect();
+        var r = a.getBoundingClientRect();
+        if (r.left < box.left || r.right > box.right) {
+          chips.scrollLeft += (r.left + r.right) / 2 - (box.left + box.right) / 2;
+        }
+      }
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) setOn(e.target.id); });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    secs.forEach(function (s) { io.observe(s); });
+  }
+
+  var bar = document.getElementById("progress");
+  function prog() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+    bar.style.transform = "scaleX(" + p + ")";
+  }
+  window.addEventListener("scroll", prog, { passive: true });
+  prog();
+
+  function current() {
+    var idx = -1;
+    secs.forEach(function (s, i) { if (s.getBoundingClientRect().top <= 80) idx = i; });
+    return idx;
+  }
+  document.addEventListener("keydown", function (e) {
+    var t = e.target && e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    var i = current() + (e.key === "ArrowLeft" ? 1 : -1);
+    i = Math.max(0, Math.min(secs.length - 1, i));
+    secs[i].scrollIntoView({ block: "start" });
+    e.preventDefault();
+  });
+
+  document.getElementById("theme").addEventListener("click", function () {
+    var root = document.documentElement;
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+  });
+})();
+</script>
+
+</body>
+</html>
